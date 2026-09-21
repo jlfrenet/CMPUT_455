@@ -65,7 +65,7 @@ class CommandInterface:
         '''
         # Evaluate arguments input. Require komi (float) and game string.
         # Every other type of input should give error
-        numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.']
+        numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', '-']
         status = False
         args =args.strip()
         arguments = args.split(maxsplit=1)
@@ -139,14 +139,13 @@ class CommandInterface:
         status = False
         args = args.strip()
         parts = args.split(maxsplit=1)
-        if len(parts[0]) == 1:
-            if parts[0] in numbers:
-                num = int(parts[0])
-                if self.game.is_legal(num):
-                    print("yes")
-                else:
-                    print("no")
-                status = True
+        if parts[0][0] in numbers:
+            num = int(parts[0])
+            if self.game.is_legal(num):
+                print("yes")
+            else:
+                print("no")
+            status = True
         
         return status
     
