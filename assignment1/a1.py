@@ -554,7 +554,64 @@ class GameBoard:
                 as_lst[h].append(hep.state()[tok].get_token())
         return as_lst
 
-
+# private testing of gameboard
+def private_test() -> None:
+    # make five tokens and a stack
+    token1 = Token()
+    print(token1.get_token())
+    
+    token2 = Token()
+    print(token2.get_token())
+    
+    token3 = Token()
+    print(token3.get_token())
+    
+    token4 = Token()
+    print(token4.get_token())
+    
+    token5 = Token()
+    print(token5.get_token())
+    
+    print("Now using __str__")
+    print(token1)
+    print(token2)
+    print(token3)
+    print(token4)
+    print(token5)
+    stack1 = Stack()
+    stack1.push(token1)
+    assert stack1.size() == 1, "Error! Stack size attribute did not update after push."
+    
+    stack1.push(token2)
+    assert stack1.size() == 2, "Error! Stack size attribute did not update after push."
+    
+    stack1.push(token3)
+    stack1.push(token4)
+    stack1.push(token5)
+    assert stack1.size() == 5, "Error! Stack size attribute did not update after push."
+            
+    print(stack1)
+    
+    stack1.pop()
+    assert stack1.size() == 4, "Error! Stack size did not update after pop."
+    new_top = stack1.peek()
+    assert new_top is stack1.pop(), "Error! Top did not update properly."
+    
+    assert stack1.size() == 3, "Error! Stack size did not update after pop."
+    
+    assert not stack1.is_empty(), "Error! is_empty returned true when should be false."
+    
+    stack1.pop()  
+    stack1.pop()
+    stack1.pop()
+    stack1.pop()  
+    assert stack1.size() == 0, "Error! Stack should be empty, but is not."
+    g1 = GameBoard(number_heaps=4)
+    print(g1)
+    for he in range(0, 4):
+        print(g1.get_heap(he))
+    g2 = GameBoard()
+    print(g2)
        
 if __name__ == "__main__":
     interface = CommandInterface()
